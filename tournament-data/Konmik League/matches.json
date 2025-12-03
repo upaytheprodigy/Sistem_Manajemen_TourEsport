@@ -1,0 +1,47 @@
+[
+  {
+    "id": "566a9b50-3f08-4594-904c-f1adad55bd98",
+    "teamA": {
+      "id": "301c88d7-3056-4e8d-9238-5c60a00ca82f",
+      "name": "Wannabe"
+    },
+    "teamB": {
+      "id": "38a7ee03-ea51-4da0-be70-ec0bc436524a",
+      "name": "Alpenliebe"
+    },
+    "result": {
+      "scoreA": 3,
+      "scoreB": 2
+    }
+  },
+  {
+    "id": "d7392d5a-ebd8-4ff1-8353-f1d3fbfd8634",
+    "teamA": {
+      "id": "301c88d7-3056-4e8d-9238-5c60a00ca82f",
+      "name": "Wannabe"
+    },
+    "teamB": {
+      "id": "dddad20d-4d83-45a8-b24f-64eb43626fc5",
+      "name": "Magicomp"
+    },
+    "result": {
+      "scoreA": 4,
+      "scoreB": 1
+    }
+  },
+  {
+    "id": "f480b783-c393-443c-b5c0-b4b1903fab1a",
+    "teamA": {
+      "id": "38a7ee03-ea51-4da0-be70-ec0bc436524a",
+      "name": "Alpenliebe"
+    },
+    "teamB": {
+      "id": "dddad20d-4d83-45a8-b24f-64eb43626fc5",
+      "name": "Magicomp"
+    },
+    "result": {
+      "scoreA": 2,
+      "scoreB": 1
+    }
+  }
+]
