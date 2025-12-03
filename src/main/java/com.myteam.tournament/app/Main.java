@@ -1,85 +1,134 @@
 package com.myteam.tournament.app;
 
-import com.myteam.tournament.factory.MatchFactory;
+import com.myteam.tournament.exception.TournamentException;
+import com.myteam.tournament.facade.TournamentFacade;
 import com.myteam.tournament.factory.MatchType;
+import com.myteam.tournament.manager.*;
 import com.myteam.tournament.model.Match;
 import com.myteam.tournament.model.Team;
+import com.myteam.tournament.strategy.KnockoutStrategy;
 import com.myteam.tournament.strategy.MatchFormatStrategy;
 import com.myteam.tournament.strategy.RoundRobinStrategy;
-import com.myteam.tournament.strategy.KnockoutStrategy;
 import com.myteam.tournament.util.Repository;
 
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        System.out.println("=== DEMO: CORE ENGINE ANGGOTA A ===");
-        System.out.println();
-
-        // ------------------------------
-        // 1. Membuat repository team
-        // ------------------------------
+        // Repositories
         Repository<Team, String> teamRepo = new Repository<>(Team::getId);
+        Repository<Match, String> matchRepo = new Repository<>(Match::getId);
 
-        Team t1 = new Team("Evos");
-        Team t2 = new Team("RRQ");
-        Team t3 = new Team("Alter Ego");
-        Team t4 = new Team("Bigetron");
+        // Managers
+        TeamManager teamManager = new TeamManager(teamRepo);
+        MatchManager matchManager = new MatchManager(matchRepo);
+        ScheduleManager scheduleManager = new ScheduleManager(new RoundRobinStrategy(MatchType.BO1));
+        StandingManager standingManager = new StandingManager();
 
-        teamRepo.add(t1);
-        teamRepo.add(t2);
-        teamRepo.add(t3);
-        teamRepo.add(t4);
+        TournamentFacade facade = new TournamentFacade(
+                teamManager,
+                matchManager,
+                scheduleManager,
+                standingManager
+        );
 
+        while (true) {
+            System.out.println("\n=== ESPORT TOURNAMENT MENU ===");
+            System.out.println("1. Tambah Tim");
+            System.out.println("2. Lihat Semua Tim");
+            System.out.println("3. Generate Jadwal Round Robin");
+            System.out.println("4. Generate Jadwal Knockout");
+            System.out.println("5. Lihat Semua Match");
+            System.out.println("6. Input Hasil Match");
+            System.out.println("7. Lihat Klasemen");
+            System.out.println("0. Keluar");
+            System.out.print("Pilihan: ");
+
+            String option = scanner.nextLine();
+
+            try {
+                switch (option) {
+                    case "1" -> addTeam(facade);
+                    case "2" -> listTeams(facade);
+                    case "3" -> generateSchedule(facade, true);
+                    case "4" -> generateSchedule(facade, false);
+                    case "5" -> listMatches(facade);
+                    case "6" -> reportResult(facade);
+                    case "7" -> showStandings(facade);
+                    case "0" -> System.exit(0);
+                    default -> System.out.println("Pilihan tidak valid.");
+                }
+            } catch (TournamentException e) {
+                System.out.println("ERROR: " + e.getMessage());
+            }
+        }
+    }
+
+    private static void addTeam(TournamentFacade facade) {
+        System.out.print("Nama tim: ");
+        String name = scanner.nextLine();
+        facade.addTeam(name);
+        System.out.println("Tim berhasil ditambahkan!");
+    }
+
+    private static void listTeams(TournamentFacade facade) {
+        List<Team> teams = facade.getTeams();
+        if (teams.isEmpty()) {
+            System.out.println("Belum ada tim.");
+            return;
+        }
         System.out.println("Daftar Tim:");
-        teamRepo.findAll().forEach(team ->
-                System.out.println(" - " + team.getName()));
-        System.out.println();
+        teams.forEach(t -> System.out.println(t.getId() + " - " + t.getName()));
+    }
 
-        // ------------------------------
-        // 2. Round Robin Strategy
-        // ------------------------------
-        System.out.println("=== ROUND ROBIN (BO1) ===");
-        MatchFormatStrategy rrStrategy = new RoundRobinStrategy(MatchType.BO1);
-        List<Match> rrMatches = rrStrategy.generateMatches(teamRepo.findAll());
+    private static void generateSchedule(TournamentFacade facade, boolean isRoundRobin) {
+        MatchFormatStrategy strategy =
+                isRoundRobin
+                        ? new RoundRobinStrategy(MatchType.BO1)
+                        : new KnockoutStrategy(MatchType.BO3);
 
-        for (Match m : rrMatches) {
-            System.out.println(m.getTeamA().getName() + " vs " + m.getTeamB().getName());
+        List<Match> matches = facade.generateSchedule(strategy,
+                isRoundRobin ? MatchType.BO1 : MatchType.BO3);
+
+        System.out.println("Jadwal berhasil dibuat!");
+        matches.forEach(m ->
+                System.out.println(m.getId() + ": " + m.getTeamA().getName() + " vs " + m.getTeamB().getName())
+        );
+    }
+
+    private static void listMatches(TournamentFacade facade) {
+        List<Match> matches = facade.getAllMatches();
+        if (matches.isEmpty()) {
+            System.out.println("Belum ada match.");
+            return;
         }
-        System.out.println();
-
-        // ------------------------------
-        // 3. Knockout Strategy
-        // ------------------------------
-        System.out.println("=== KNOCKOUT (BO3) ===");
-        MatchFormatStrategy koStrategy = new KnockoutStrategy(MatchType.BO3);
-        List<Match> koMatches = koStrategy.generateMatches(teamRepo.findAll());
-
-        for (Match m : koMatches) {
-            System.out.println(m.getTeamA().getName() + " vs " + m.getTeamB().getName());
+        for (Match m : matches) {
+            System.out.println(m);
         }
-        System.out.println();
+    }
 
-        // ------------------------------
-        // 4. Testing MatchFactory & BO1 play
-        // ------------------------------
-        System.out.println("=== TEST BO1 MATCH SIMULATION ===");
-        Match bo1 = MatchFactory.createMatch(MatchType.BO1, t1, t2);
-        bo1.play(); // simulation
-        System.out.println(bo1);
-        System.out.println();
+    private static void reportResult(TournamentFacade facade) {
+        System.out.print("ID Match: ");
+        String id = scanner.nextLine();
+        System.out.print("Skor A: ");
+        int a = Integer.parseInt(scanner.nextLine());
+        System.out.print("Skor B: ");
+        int b = Integer.parseInt(scanner.nextLine());
+        facade.reportResult(id, a, b);
+        System.out.println("Hasil berhasil disimpan!");
+    }
 
-        // ------------------------------
-        // 5. Testing BO3 match
-        // ------------------------------
-        System.out.println("=== TEST BO3 MATCH SIMULATION ===");
-        Match bo3 = MatchFactory.createMatch(MatchType.BO3, t3, t4);
-        bo3.play();
-        System.out.println(bo3);
-        System.out.println();
-
-        System.out.println("=== END OF DEMO ===");
+    private static void showStandings(TournamentFacade facade) {
+        Map<Team, Integer> standings = facade.getStandings();
+        if (standings.isEmpty()) {
+            System.out.println("Belum ada klasemen.");
+            return;
+        }
+        standings.forEach((t, p) ->
+                System.out.println(t.getName() + " - " + p + " pts"));
     }
 }
