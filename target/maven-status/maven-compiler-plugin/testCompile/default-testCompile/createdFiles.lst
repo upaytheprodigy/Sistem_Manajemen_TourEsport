@@ -1,0 +1,4 @@
+com\myteam\tournament\MatchFactoryTest.class
+StrategyTest.class
+com\myteam\tournament\RoundRobinStrategyTest.class
+TeamManagerTest.class
