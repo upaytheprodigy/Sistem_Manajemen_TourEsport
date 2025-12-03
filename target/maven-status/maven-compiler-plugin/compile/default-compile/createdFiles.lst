@@ -1,0 +1,12 @@
+MatchFactory.class
+RoundRobinStrategy.class
+TournamentFacade.class
+Team.class
+MatchManager.class
+ScheduleManager.class
+Exceptions.class
+KnockoutStrategy.class
+Repository.class
+MatchFormatStrategy.class
+Result.class
+Match.class
