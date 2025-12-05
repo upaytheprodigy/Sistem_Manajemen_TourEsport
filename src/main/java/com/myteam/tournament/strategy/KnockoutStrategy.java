@@ -1,50 +1,26 @@
 package com.myteam.tournament.strategy;
 
-import com.myteam.tournament.factory.MatchFactory;
+import com.myteam.tournament.manager.MatchManager;
 import com.myteam.tournament.factory.MatchType;
 import com.myteam.tournament.model.Match;
 import com.myteam.tournament.model.Team;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Queue;
 
 /**
- * Simple single-elimination pairing:
- * - If odd number, last team gets a bye to next round (represented as no direct match now).
- * This implementation generates only first round pairings.
- *
- * Note for integration: building full bracket rounds can be added later.
+ * Creates first-round knockout pairing (1v2, 3v4 ...). Not auto-resolve next rounds.
  */
-public final class KnockoutStrategy implements MatchFormatStrategy {
-
-    private final MatchType matchType;
-
-    public KnockoutStrategy(MatchType matchType) {
-        this.matchType = Objects.requireNonNull(matchType);
-    }
+public class KnockoutStrategy implements ScheduleStrategy {
 
     @Override
-    public List<Match> generateMatches(List<Team> teams) {
-        if (teams == null || teams.isEmpty()) return Collections.emptyList();
-
-        // copy and shuffle for fairness (integration might want deterministic order)
-        List<Team> pool = new ArrayList<>(teams);
-        Collections.shuffle(pool);
-
-        Queue<Team> queue = new LinkedList<>(pool);
-        List<Match> matches = new ArrayList<>();
-
-        while (queue.size() >= 2) {
-            Team a = queue.poll();
-            Team b = queue.poll();
-            matches.add(MatchFactory.createMatch(matchType, a, b));
+    public List<Match> generate(List<Team> teams, MatchManager mm, MatchType type) {
+        List<Match> res = new ArrayList<>();
+        List<Team> copy = new ArrayList<>(teams);
+        // if odd, last one gets bye (not implemented: just skip)
+        for (int i = 0; i + 1 < copy.size(); i += 2) {
+            res.add(mm.createMatch(copy.get(i), copy.get(i + 1), type));
         }
-
-        // if one team remains, it has a bye (no match created). Integration can handle bye.
-        return matches;
+        return res;
     }
 }

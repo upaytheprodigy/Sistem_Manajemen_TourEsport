@@ -3,30 +3,18 @@ package com.myteam.tournament.manager;
 import com.myteam.tournament.factory.MatchType;
 import com.myteam.tournament.model.Match;
 import com.myteam.tournament.model.Team;
-import com.myteam.tournament.strategy.MatchFormatStrategy;
+import com.myteam.tournament.strategy.ScheduleStrategy;
 
 import java.util.List;
 
-/**
- * Generates schedules using strategy pattern (RoundRobin / Knockout).
- */
 public class ScheduleManager {
 
-    private MatchFormatStrategy strategy;
+    private ScheduleStrategy strategy;
 
-    public ScheduleManager(MatchFormatStrategy strategy) {
-        this.strategy = strategy;
-    }
+    public ScheduleManager(ScheduleStrategy strategy) { this.strategy = strategy; }
+    public void setStrategy(ScheduleStrategy s) { this.strategy = s; }
 
-    public void setStrategy(MatchFormatStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public List<Match> generateSchedule(List<Team> teams, MatchManager manager, MatchType type) {
-        List<Match> matches = strategy.generateMatches(teams);
-        for (Match m : matches) {
-            manager.createMatch(m.getTeamA(), m.getTeamB(), type);
-        }
-        return matches;
+    public List<Match> generateSchedule(List<Team> teams, MatchManager mm, MatchType type) {
+        return strategy.generate(teams, mm, type);
     }
 }

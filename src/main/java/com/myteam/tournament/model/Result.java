@@ -2,10 +2,7 @@ package com.myteam.tournament.model;
 
 import java.util.Optional;
 
-/**
- * Simple result object for a match.
- */
-public final class Result {
+public class Result {
     private final int scoreA;
     private final int scoreB;
 
@@ -17,16 +14,11 @@ public final class Result {
     public int getScoreA() { return scoreA; }
     public int getScoreB() { return scoreB; }
 
-    public Optional<Team> getWinner(Team teamA, Team teamB) {
-        if (scoreA > scoreB) return Optional.ofNullable(teamA);
-        if (scoreB > scoreA) return Optional.ofNullable(teamB);
-        return Optional.empty(); // draw
+    public Optional<Team> getWinner(Team a, Team b) {
+        if (scoreA > scoreB) return Optional.of(a);
+        if (scoreB > scoreA) return Optional.of(b);
+        return Optional.empty();
     }
 
-    public boolean isDraw() { return scoreA == scoreB; }
-
-    @Override
-    public String toString() {
-        return "Result{" + scoreA + ":" + scoreB + '}';
-    }
+    @Override public String toString() { return scoreA + "-" + scoreB; }
 }

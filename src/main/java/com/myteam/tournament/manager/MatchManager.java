@@ -9,34 +9,23 @@ import com.myteam.tournament.util.Repository;
 
 import java.util.List;
 
-/**
- * Manages match creation, retrieval, and result reporting.
- */
 public class MatchManager {
 
-    private final Repository<Match, String> repository;
+    private final Repository<Match> repo;
 
-    public MatchManager(Repository<Match, String> repository) {
-        this.repository = repository;
-    }
+    public MatchManager(Repository<Match> repo) { this.repo = repo; }
 
     public Match createMatch(Team a, Team b, MatchType type) {
         Match m = MatchFactory.createMatch(type, a, b);
-        repository.add(m);
+        repo.add(m);
         return m;
     }
 
-    public Match getMatch(String id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new MatchNotFoundException(id));
-    }
+    public Match getMatch(String id) { return repo.findById(id).orElseThrow(() -> new MatchNotFoundException(id)); }
 
-    public List<Match> getAllMatches() {
-        return repository.findAll();
-    }
+    public List<Match> getAllMatches() { return repo.findAll(); }
 
-    public void reportResult(String matchId, int scoreA, int scoreB) {
-        Match m = getMatch(matchId);
-        m.reportResult(scoreA, scoreB);
-    }
+    public void reportResult(String matchId, int sA, int sB) { getMatch(matchId).reportResult(sA, sB); }
+
+    public void setAllMatches(List<Match> list) { repo.overrideAll(list); }
 }

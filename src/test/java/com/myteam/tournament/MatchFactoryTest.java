@@ -14,7 +14,9 @@ public class MatchFactoryTest {
     void createBO1Match() {
         Team a = new Team("A");
         Team b = new Team("B");
+
         Match m = MatchFactory.createMatch(MatchType.BO1, a, b);
+
         assertNotNull(m);
         assertEquals(a, m.getTeamA());
         assertEquals(b, m.getTeamB());
@@ -25,7 +27,9 @@ public class MatchFactoryTest {
     void createBO3Match() {
         Team a = new Team("A");
         Team b = new Team("B");
+
         Match m = MatchFactory.createMatch(MatchType.BO3, a, b);
+
         assertNotNull(m);
         assertEquals(a, m.getTeamA());
         assertEquals(b, m.getTeamB());

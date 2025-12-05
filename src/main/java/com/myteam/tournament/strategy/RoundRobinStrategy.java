@@ -1,36 +1,23 @@
 package com.myteam.tournament.strategy;
 
-import com.myteam.tournament.factory.MatchFactory;
+import com.myteam.tournament.manager.MatchManager;
 import com.myteam.tournament.factory.MatchType;
 import com.myteam.tournament.model.Match;
 import com.myteam.tournament.model.Team;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
-/**
- * Round-robin: each pair of teams plays once.
- */
-public final class RoundRobinStrategy implements MatchFormatStrategy {
-
-    private final MatchType matchType;
-
-    public RoundRobinStrategy(MatchType matchType) {
-        this.matchType = Objects.requireNonNull(matchType);
-    }
+public class RoundRobinStrategy implements ScheduleStrategy {
 
     @Override
-    public List<Match> generateMatches(List<Team> teams) {
-        if (teams == null) return Collections.emptyList();
-        List<Match> matches = new ArrayList<>();
-        int n = teams.size();
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                matches.add(MatchFactory.createMatch(matchType, teams.get(i), teams.get(j)));
+    public List<Match> generate(List<Team> teams, MatchManager matchManager, MatchType type) {
+        List<Match> result = new ArrayList<>();
+        for (int i = 0; i < teams.size(); i++) {
+            for (int j = i + 1; j < teams.size(); j++) {
+                result.add(matchManager.createMatch(teams.get(i), teams.get(j), type));
             }
         }
-        return matches;
+        return result;
     }
 }

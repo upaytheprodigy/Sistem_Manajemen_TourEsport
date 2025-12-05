@@ -1,27 +1,25 @@
 package com.myteam.tournament.util;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 
 /**
- * Very small in-memory repository demonstrating Generics usage.
- * Not thread-safe (single-thread demo).
+ * Simple in-memory repository keyed by idExtractor.
  */
-public class Repository<T, ID> {
+public class Repository<T> {
 
-    private final Map<ID, T> storage = new LinkedHashMap<>();
-    private final java.util.function.Function<T, ID> idMapper;
+    private final Map<String, T> storage = new LinkedHashMap<>();
+    private final Function<T, String> idExtractor;
 
-    public Repository(java.util.function.Function<T, ID> idMapper) {
-        this.idMapper = Objects.requireNonNull(idMapper);
+    public Repository(Function<T, String> idExtractor) {
+        this.idExtractor = Objects.requireNonNull(idExtractor);
     }
 
-    public void add(T item) {
-        storage.put(idMapper.apply(item), item);
+    public void add(T obj) {
+        storage.put(idExtractor.apply(obj), obj);
     }
 
-    public Optional<T> findById(ID id) {
+    public Optional<T> findById(String id) {
         return Optional.ofNullable(storage.get(id));
     }
 
@@ -29,15 +27,14 @@ public class Repository<T, ID> {
         return new ArrayList<>(storage.values());
     }
 
-    public List<T> findWhere(Predicate<T> predicate) {
-        return storage.values().stream().filter(predicate).collect(Collectors.toList());
-    }
-
-    public void removeById(ID id) {
-        storage.remove(id);
-    }
-
     public void clear() {
         storage.clear();
+    }
+
+    public void overrideAll(List<T> list) {
+        storage.clear();
+        if (list != null) {
+            for (T t : list) storage.put(idExtractor.apply(t), t);
+        }
     }
 }

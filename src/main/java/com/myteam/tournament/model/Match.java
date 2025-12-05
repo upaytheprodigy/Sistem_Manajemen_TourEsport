@@ -4,20 +4,16 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * Abstract Match. Concrete matches implement play() and possibly best-of logic.
- * Keep fields protected enough for subclass access if needed.
- */
 public abstract class Match {
     private final String id;
     protected final Team teamA;
     protected final Team teamB;
-    protected Result result; // null until reported/played
+    protected Result result; // null until reported
 
-    protected Match(Team teamA, Team teamB) {
+    protected Match(Team a, Team b) {
         this.id = UUID.randomUUID().toString();
-        this.teamA = Objects.requireNonNull(teamA, "teamA required");
-        this.teamB = Objects.requireNonNull(teamB, "teamB required");
+        this.teamA = Objects.requireNonNull(a);
+        this.teamB = Objects.requireNonNull(b);
     }
 
     public String getId() { return id; }
@@ -25,26 +21,16 @@ public abstract class Match {
     public Team getTeamB() { return teamB; }
     public Optional<Result> getResult() { return Optional.ofNullable(result); }
 
-    /**
-     * Concrete subclasses either simulate or accept result input.
-     * Implementation should set `result` field.
-     */
-    public abstract void play(); // can simulate or leave empty if using manual reporting
-
-    /**
-     * Allow external reporting (e.g., CLI) to set result explicitly.
-     */
-    public void reportResult(int scoreA, int scoreB) {
-        this.result = new Result(scoreA, scoreB);
-    }
-
+    public void reportResult(int scoreA, int scoreB) { this.result = new Result(scoreA, scoreB); }
     public Optional<Team> getWinner() {
         if (result == null) return Optional.empty();
         return result.getWinner(teamA, teamB);
     }
+    public boolean isFinished() { return result != null; }
 
-    @Override
-    public String toString() {
-        return "Match{" + "id='" + id + '\'' + ", teamA=" + teamA.getName() + ", teamB=" + teamB.getName() + ", result=" + result + '}';
+    public abstract void play(); // optional simulation for subclasses
+
+    @Override public String toString() {
+        return id + ": " + teamA.getName() + " vs " + teamB.getName() + " -> " + (result==null? "-" : result.toString());
     }
 }
