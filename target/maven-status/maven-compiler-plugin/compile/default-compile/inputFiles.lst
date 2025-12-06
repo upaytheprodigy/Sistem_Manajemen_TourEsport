@@ -1,4 +1,5 @@
-F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\app\Main.java
+F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\app\MainCLI.java
+F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\app\MainGUI.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\exception\DuplicateTeamException.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\exception\MatchNotFoundException.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\exception\TeamNotFoundException.java

@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * CLI entrypoint.
  */
-public class Main {
+public class MainCLI {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final Map<String, TournamentSession> sessions = new LinkedHashMap<>();

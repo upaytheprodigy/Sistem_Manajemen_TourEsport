@@ -1,6 +1,5 @@
 com\myteam\tournament\factory\MatchFactory.class
 com\myteam\tournament\strategy\RoundRobinStrategy.class
-com\myteam\tournament\app\Main.class
 com\myteam\tournament\facade\TournamentFacade.class
 com\myteam\tournament\model\BO1Match.class
 com\myteam\tournament\manager\MatchManager.class

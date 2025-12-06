@@ -1,14 +1,18 @@
 [
   {
-    "id": "301c88d7-3056-4e8d-9238-5c60a00ca82f",
-    "name": "Wannabe"
+    "id": "20ed9e70-090e-4ef1-8dc2-98e6bf43bc95",
+    "name": "Ian Team"
   },
   {
-    "id": "38a7ee03-ea51-4da0-be70-ec0bc436524a",
-    "name": "Alpenliebe"
+    "id": "5f39c05b-9fe8-4999-9b93-e8c81d469ac6",
+    "name": "Upay Team"
   },
   {
-    "id": "dddad20d-4d83-45a8-b24f-64eb43626fc5",
-    "name": "Magicomp"
+    "id": "faf770bc-d588-4499-8781-0a6b4694ca94",
+    "name": "Brata Team"
+  },
+  {
+    "id": "e9b5816a-87d7-46b3-bceb-1d3b4fb58788",
+    "name": "Nesta Team"
   }
 ]
