@@ -1,5 +1,3 @@
-F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\app\MainCLI.java
-F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\app\MainGUI.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\exception\DuplicateTeamException.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\exception\MatchNotFoundException.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\exception\TeamNotFoundException.java
@@ -17,12 +15,10 @@ F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\m
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\model\Result.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\model\Standing.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\model\Team.java
-F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\storage\JsonStorage.java
-F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\storage\LogService.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\strategy\KnockoutStrategy.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\strategy\MatchFormatStrategy.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\strategy\RoundRobinStrategy.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\strategy\ScheduleStrategy.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\tournament\TournamentSession.java
-F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\util\Exceptions.java
+F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\ui\Main.java
 F:\Perkuliahan\Sistem_Manajemen_TourEsport\src\main\java\com\myteam\tournament\util\Repository.java

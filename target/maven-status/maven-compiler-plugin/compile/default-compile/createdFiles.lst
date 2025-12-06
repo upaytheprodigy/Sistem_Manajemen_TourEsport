@@ -12,7 +12,6 @@ com\myteam\tournament\strategy\ScheduleStrategy.class
 com\myteam\tournament\exception\MatchNotFoundException.class
 com\myteam\tournament\exception\DuplicateTeamException.class
 com\myteam\tournament\factory\MatchFactory$1.class
-com\myteam\tournament\storage\LogService.class
 com\myteam\tournament\model\BO3Match.class
 com\myteam\tournament\model\Match.class
 com\myteam\tournament\exception\TournamentException.class
@@ -20,8 +19,7 @@ com\myteam\tournament\strategy\MatchFormatStrategy.class
 com\myteam\tournament\strategy\KnockoutStrategy.class
 com\myteam\tournament\manager\StandingManager.class
 com\myteam\tournament\util\Repository.class
-Exceptions.class
 com\myteam\tournament\manager\ScheduleManager.class
 com\myteam\tournament\model\Team.class
-com\myteam\tournament\storage\JsonStorage.class
+com\myteam\tournament\ui\Main.class
 com\myteam\tournament\manager\TeamManager.class
