@@ -1,38 +1,34 @@
 package com.myteam.tournament.manager;
-
 import com.myteam.tournament.model.Match;
 import com.myteam.tournament.model.Standing;
-import com.myteam.tournament.model.Team;
-import com.myteam.tournament.util.Repository;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class StandingManager {
-
-    private final Repository<Standing> repo;
-    public StandingManager(Repository<Standing> repo){ 
-        this.repo = repo; 
-    }
-
-    public void initialize(List<Team> teams){
-        repo.clear();
-        teams.forEach(t -> repo.add(new Standing(t.getId(), t.getName())));
-    }
-
     public List<Standing> computeStandings(List<Match> matches){
-        repo.findAll().forEach(Standing::reset);
-        for (Match m : matches){
-            var r = m.getResult();
-            if (r.isEmpty()) continue;
-            Standing a = repo.findById(m.getTeamA().getId()).orElseThrow();
-            Standing b = repo.findById(m.getTeamB().getId()).orElseThrow();
-            var res = r.get();
-            if (res.getScoreA() > res.getScoreB()){ a.addWin(); b.addLoss();}
-            else if (res.getScoreA() < res.getScoreB()){ b.addWin(); a.addLoss();}
-            else { a.addDraw(); b.addDraw(); }
+        // build map by teamId -> Standing(teamId, teamName)
+        Map<String,Standing> map = new HashMap<>();
+        for(Match m: matches){
+            if (!map.containsKey(m.getTeamA().getId()))
+                map.put(m.getTeamA().getId(), new Standing(m.getTeamA().getId(), m.getTeamA().getName()));
+            if (!map.containsKey(m.getTeamB().getId()))
+                map.put(m.getTeamB().getId(), new Standing(m.getTeamB().getId(), m.getTeamB().getName()));
+
+            var opt = m.getResult();
+            if (opt.isEmpty()) continue;
+            var r = opt.get();
+            if (r.getScoreA() > r.getScoreB()){
+                map.get(m.getTeamA().getId()).addWin();
+                map.get(m.getTeamB().getId()).addLoss();
+            } else if (r.getScoreA() < r.getScoreB()){
+                map.get(m.getTeamB().getId()).addWin();
+                map.get(m.getTeamA().getId()).addLoss();
+            } else {
+                map.get(m.getTeamA().getId()).addDraw();
+                map.get(m.getTeamB().getId()).addDraw();
+            }
         }
-        return repo.findAll().stream()
-            .sorted(Comparator.comparingInt(Standing::getPoints).reversed())
-            .collect(Collectors.toList());
+        List<Standing> list = new ArrayList<>(map.values());
+        list.sort(Comparator.comparingInt(Standing::getPoints).reversed());
+        return list;
     }
 }

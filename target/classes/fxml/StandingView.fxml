@@ -1,0 +1,19 @@
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.myteam.tournament.app.controller.StandingViewController"
+      stylesheets="@../style/style.css"
+      alignment="CENTER" spacing="20">
+
+    <Label text="KLASEMEN" styleClass="big-title"/>
+
+    <TableView fx:id="tblStanding" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="colTeam" text="Tim" prefWidth="200"/>
+            <TableColumn fx:id="colWin" text="Menang" prefWidth="150"/>
+            <TableColumn fx:id="colLose" text="Kalah" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <Button text="KEMBALI" onAction="#onBack"/>
+
+</VBox>

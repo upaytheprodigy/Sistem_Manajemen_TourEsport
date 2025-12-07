@@ -29,7 +29,7 @@ public final class TournamentSession {
         this.teamManager = new TeamManager(teamRepo);
         this.matchManager = new MatchManager(matchRepo);
         this.scheduleManager = schedule;
-        this.standingManager = new StandingManager(standingRepo);
+        this.standingManager = new StandingManager();
     }
 
     public String getName() { return name; }

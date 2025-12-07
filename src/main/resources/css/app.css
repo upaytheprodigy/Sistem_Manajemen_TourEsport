@@ -1,0 +1,7 @@
+/* palette based on your figma */
+.root {
+  -fx-background-color: linear-gradient(#1B211A 0%, #1F4B4A 100%);
+  -fx-font-family: "Segoe UI";
+}
+.list-view { -fx-background-color: white; }
+.label { -fx-text-fill: #EBD5AB; -fx-font-size: 14px; -fx-font-weight: bold; }

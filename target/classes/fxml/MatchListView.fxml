@@ -1,0 +1,16 @@
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.myteam.tournament.app.controller.MatchListController"
+      stylesheets="@../style/style.css"
+      spacing="20" alignment="CENTER">
+
+    <Label text="DAFTAR PERTANDINGAN" styleClass="big-title"/>
+
+    <ListView fx:id="matchList" prefWidth="600" prefHeight="300"/>
+
+    <HBox spacing="20">
+        <Button text="INPUT SKOR" onAction="#onInputScore"/>
+        <Button text="KEMBALI" onAction="#onBack"/>
+    </HBox>
+
+</VBox>

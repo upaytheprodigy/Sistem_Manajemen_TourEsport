@@ -1,28 +1,20 @@
 package com.myteam.tournament.manager;
-
-import com.myteam.tournament.model.Match;
-import com.myteam.tournament.model.Team;
-import com.myteam.tournament.factory.MatchFactory;
-import com.myteam.tournament.factory.MatchType;
+import com.myteam.tournament.model.*;
 import com.myteam.tournament.util.Repository;
+import com.myteam.tournament.factory.MatchType;
+import java.util.ArrayList;
 import java.util.List;
-
 
 public class MatchManager {
     private final Repository<Match> repo;
-    public MatchManager(Repository<Match> repo){ 
-        this.repo = repo; 
-    }
-
+    public MatchManager(Repository<Match> repo){ this.repo = repo; }
     public Match createMatch(Team a, Team b, MatchType type){
-        Match m = MatchFactory.create(type, a, b);
+        Match m = new Match(a,b,type);
         repo.add(m);
         return m;
     }
-    
     public List<Match> getAllMatches(){ return repo.findAll(); }
-    
-    public Match findById(String id){ 
-        return repo.findById(id).orElse(null);
+    public void setMatches(List<Match> list){
+        repo.overrideAll(list);
     }
 }

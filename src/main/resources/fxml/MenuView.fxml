@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:controller="com.myteam.tournament.app.controller.MenuController"
+            prefWidth="1280" prefHeight="720"
+            xmlns:fx="http://javafx.com/fxml">
+
+    <!-- Background -->
+    <ImageView fx:id="bgImage"
+               fitWidth="1280" fitHeight="720"
+               preserveRatio="false"/>
+
+    <!-- Button: Create -->
+    <ImageView fx:id="btnCreate"
+               layoutX="470" layoutY="350"
+               fitWidth="340" fitHeight="70"
+               pickOnBounds="true"
+               onMouseClicked="#onCreate"/>
+
+    <!-- Button: Load -->
+    <ImageView fx:id="btnLoad"
+               layoutX="470" layoutY="450"
+               fitWidth="340" fitHeight="70"
+               pickOnBounds="true"
+               onMouseClicked="#onLoad"/>
+
+    <!-- Button: Exit -->
+    <ImageView fx:id="btnExit"
+               layoutX="20" layoutY="20"
+               fitWidth="60" fitHeight="60"
+               pickOnBounds="true"
+               onMouseClicked="#onExit"/>
+
+</AnchorPane>
