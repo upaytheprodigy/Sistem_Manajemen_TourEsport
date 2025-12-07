@@ -1,57 +1,36 @@
 package com.myteam.tournament.app.util;
 
-import java.util.function.Consumer;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
+import javafx.scene.*;
 import javafx.stage.Stage;
 
 public class SceneLoader {
 
-    private static Stage primary;
+    private static Stage mainStage;
 
     public static void init(Stage stage) {
-        primary = stage;
+        mainStage = stage;
     }
 
-    public static void load(String fxml, String title, Consumer<Object> controllerConfig) {
+    public static void load(String fxml, String title, java.util.function.Consumer<Object> controllerSetup) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneLoader.class.getResource("/fxml/" + fxml));
             Parent root = loader.load();
 
-            Object controller = loader.getController();
-            if (controllerConfig != null) controllerConfig.accept(controller);
+            if (controllerSetup != null)
+                controllerSetup.accept(loader.getController());
 
-            Stage stage = new Stage();
-            stage.setTitle(title);
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static <T> void openDialog(String fxml, String title, Consumer<T> consumer) {
-        try {
-            FXMLLoader loader = new FXMLLoader(SceneLoader.class.getResource("/fxml/" + fxml));
-            Stage s = new Stage();
-            s.setScene(new Scene(loader.load()));
-            s.setTitle(title);
-
-            if (consumer != null) consumer.accept(loader.getController());
-
-            s.show();
+            Scene scene = new Scene(root);
+            mainStage.setTitle(title);
+            mainStage.setScene(scene); 
+            mainStage.show();          
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void closeWindow(ImageView btnAdd) {
-        Stage stage = (Stage) btnAdd.getScene().getWindow();
-        stage.close();
+    public static void closeWindow(Node n) {
+        ((Stage) n.getScene().getWindow()).close();
     }
 }

@@ -24,6 +24,7 @@ com\myteam\tournament\app\MainApp.class
 com\myteam\tournament\app\controller\StandingViewController.class
 com\myteam\tournament\strategy\RoundRobinStrategy.class
 com\myteam\tournament\facade\TournamentFacade.class
+com\myteam\tournament\app\controller\InputScoreController.class
 com\myteam\tournament\exception\DuplicateTeamException.class
 com\myteam\tournament\model\BO3Match.class
 com\myteam\tournament\model\Match.class

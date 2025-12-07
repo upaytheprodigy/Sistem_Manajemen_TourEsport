@@ -1,0 +1,92 @@
+[
+  {
+    "id": "c1dc58af-3aca-40ea-9711-87f0c8afd708",
+    "teamA": {
+      "id": "20ed9e70-090e-4ef1-8dc2-98e6bf43bc95",
+      "name": "Ian Team"
+    },
+    "teamB": {
+      "id": "5f39c05b-9fe8-4999-9b93-e8c81d469ac6",
+      "name": "Upay Team"
+    },
+    "result": {
+      "scoreA": 1,
+      "scoreB": 2
+    }
+  },
+  {
+    "id": "eeb6159b-78d2-49db-b48d-ae0fab052b8e",
+    "teamA": {
+      "id": "20ed9e70-090e-4ef1-8dc2-98e6bf43bc95",
+      "name": "Ian Team"
+    },
+    "teamB": {
+      "id": "faf770bc-d588-4499-8781-0a6b4694ca94",
+      "name": "Brata Team"
+    },
+    "result": {
+      "scoreA": 3,
+      "scoreB": 0
+    }
+  },
+  {
+    "id": "28e65b18-4111-416b-8045-46589e501b66",
+    "teamA": {
+      "id": "20ed9e70-090e-4ef1-8dc2-98e6bf43bc95",
+      "name": "Ian Team"
+    },
+    "teamB": {
+      "id": "e9b5816a-87d7-46b3-bceb-1d3b4fb58788",
+      "name": "Nesta Team"
+    },
+    "result": {
+      "scoreA": 4,
+      "scoreB": 3
+    }
+  },
+  {
+    "id": "390adf4e-c7df-4cb7-915d-e6e65d555a32",
+    "teamA": {
+      "id": "5f39c05b-9fe8-4999-9b93-e8c81d469ac6",
+      "name": "Upay Team"
+    },
+    "teamB": {
+      "id": "faf770bc-d588-4499-8781-0a6b4694ca94",
+      "name": "Brata Team"
+    },
+    "result": {
+      "scoreA": 1,
+      "scoreB": 2
+    }
+  },
+  {
+    "id": "7bccf2f4-0dec-4976-851a-21a2d6d1105f",
+    "teamA": {
+      "id": "5f39c05b-9fe8-4999-9b93-e8c81d469ac6",
+      "name": "Upay Team"
+    },
+    "teamB": {
+      "id": "e9b5816a-87d7-46b3-bceb-1d3b4fb58788",
+      "name": "Nesta Team"
+    },
+    "result": {
+      "scoreA": 5,
+      "scoreB": 0
+    }
+  },
+  {
+    "id": "fbb43e58-2151-416c-bae3-b4e203b5b93e",
+    "teamA": {
+      "id": "faf770bc-d588-4499-8781-0a6b4694ca94",
+      "name": "Brata Team"
+    },
+    "teamB": {
+      "id": "e9b5816a-87d7-46b3-bceb-1d3b4fb58788",
+      "name": "Nesta Team"
+    },
+    "result": {
+      "scoreA": 1,
+      "scoreB": 3
+    }
+  }
+]

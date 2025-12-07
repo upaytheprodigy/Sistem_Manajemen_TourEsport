@@ -1,6 +1,8 @@
 package com.myteam.tournament.util;
 import java.util.*;
 import java.util.function.Function;
+
+import com.myteam.tournament.model.Match;
 public class Repository<T> {
     private final Map<String,T> storage = new LinkedHashMap<>();
     private final Function<T,String> idExtractor;
@@ -15,5 +17,14 @@ public class Repository<T> {
     public void overrideAll(List<T> list){
         storage.clear();
         if (list!=null) for (T t: list) storage.put(idExtractor.apply(t), t);
+    }
+
+    public void update(Match match) {
+        String id = idExtractor.apply((T) match);
+        if (storage.containsKey(id)) {
+            storage.put(id, (T) match);
+        } else {
+            throw new NoSuchElementException("No match found with id: " + id);
+        }
     }
 }

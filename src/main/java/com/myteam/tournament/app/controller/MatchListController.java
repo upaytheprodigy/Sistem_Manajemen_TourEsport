@@ -1,5 +1,6 @@
 package com.myteam.tournament.app.controller;
 
+import com.myteam.tournament.app.util.SceneLoader;
 import com.myteam.tournament.facade.TournamentFacade;
 import com.myteam.tournament.model.Match;
 
@@ -8,7 +9,7 @@ import javafx.scene.control.ListView;
 
 public class MatchListController {
 
-    @FXML private ListView<String> listMatches;
+    @FXML private ListView<Match> listMatches;
 
     private TournamentFacade facade;
 
@@ -18,9 +19,21 @@ public class MatchListController {
     }
 
     private void refresh() {
-        listMatches.getItems().clear();
-        for (Match m : facade.getAllMatches()) {
-            listMatches.getItems().add(m.toString());
-        }
+        listMatches.getItems().setAll(facade.getAllMatches());
+    }
+
+    @FXML
+    private void onInputScore() {
+        Match selected = listMatches.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        SceneLoader.load("InputScore.fxml", "Input Skor", c -> {
+            ((InputScoreController)c).setData(facade, selected);
+        });
+    }
+
+    @FXML
+    private void onBack() {
+        listMatches.getScene().getWindow().hide();
     }
 }

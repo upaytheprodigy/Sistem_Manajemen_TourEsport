@@ -54,4 +54,19 @@ public class Match {
     public void reportResult(int a, int b) {
         this.result = new MatchResult(a, b);
     }
+    
+    public void setScoreB(int b) {
+        if (this.result == null) {
+            this.result = new MatchResult(0, b);
+        } else {
+            this.result = new MatchResult(this.result.getScoreA(), b);
+        }
+    }
+    public void setScoreA(int a) {
+        if (this.result == null) {
+            this.result = new MatchResult(a, 0);
+        } else {
+            this.result = new MatchResult(a, this.result.getScoreB());
+        }
+    }
 }

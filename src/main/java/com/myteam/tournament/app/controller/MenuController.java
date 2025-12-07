@@ -15,12 +15,18 @@ public class MenuController {
 
     @FXML
     public void initialize() {
-
         bgImage.setImage(load("3.png"));
         btnCreate.setImage(load("1.png"));
-        btnLoad.setImage(load("2.png"));
-        btnExit.setImage(load("exit.png")); // kamu atur sendiri
+        btnCreate.setPickOnBounds(true);
+        btnCreate.setOnMouseClicked(e -> onCreate());
+        btnCreate.setOnMousePressed(null); 
 
+        btnLoad.setImage(load("2.png"));
+        btnExit.setImage(load("exit.png"));
+
+
+        btnLoad.setPickOnBounds(true);
+        btnExit.setPickOnBounds(true);
     }
 
     private Image load(String file) {
@@ -39,7 +45,6 @@ public class MenuController {
 
     @FXML
     private void onExit() {
-        Stage stage = (Stage) bgImage.getScene().getWindow();
-        stage.close();
+        ((Stage) bgImage.getScene().getWindow()).close();
     }
 }

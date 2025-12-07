@@ -28,4 +28,8 @@ public class TournamentFacade {
     public List<Standing> getStandings(){
         return standingManager.computeStandings(matchManager.getAllMatches());
     }
+
+    public void inputResult(String id, int a, int b) {
+        matchManager.updateMatchResult(id, a, b);
+    }
 }

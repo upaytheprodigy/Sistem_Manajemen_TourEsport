@@ -1,7 +1,25 @@
-/* palette based on your figma */
 .root {
-  -fx-background-color: linear-gradient(#1B211A 0%, #1F4B4A 100%);
-  -fx-font-family: "Segoe UI";
+    -fx-background-color: #1E1E1E;
 }
-.list-view { -fx-background-color: white; }
-.label { -fx-text-fill: #EBD5AB; -fx-font-size: 14px; -fx-font-weight: bold; }
+
+.big-title {
+    -fx-font-size: 28px;
+    -fx-text-fill: #EBD5AB;
+    -fx-font-weight: bold;
+}
+
+.input-field {
+    -fx-background-color: #333;
+    -fx-text-fill: #fff;
+    -fx-prompt-text-fill: #aaaaaa;
+}
+
+.button {
+    -fx-background-color: #444;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+}
+
+.button:hover {
+    -fx-background-color: #666;
+}

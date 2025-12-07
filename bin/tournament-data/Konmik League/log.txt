@@ -1,0 +1,15 @@
+2025-12-07T02:45:51.525080200 - Tournament deleted (GUI)
+2025-12-07T02:46:02.190382900 - Tournament selected (GUI)
+2025-12-07T02:46:07.299866 - Added team (GUI): Ian Team
+2025-12-07T02:46:15.587427300 - Generated RoundRobin: 0 matches (GUI)
+2025-12-07T02:46:30.866314600 - Added team (GUI): Upay Team
+2025-12-07T02:46:48.215887600 - Added team (GUI): Brata Team
+2025-12-07T02:47:01.096774800 - Added team (GUI): Nesta Team
+2025-12-07T02:47:06.242358100 - Generated RoundRobin: 6 matches (GUI)
+2025-12-07T02:48:04.966360200 - Reported result for c1dc58af-3aca-40ea-9711-87f0c8afd708: 1-2 (GUI)
+2025-12-07T02:48:30.661658100 - Reported result for eeb6159b-78d2-49db-b48d-ae0fab052b8e: 3-0 (GUI)
+2025-12-07T02:49:00.683317500 - Reported result for 28e65b18-4111-416b-8045-46589e501b66: 4-3 (GUI)
+2025-12-07T02:49:22.059017300 - Reported result for 390adf4e-c7df-4cb7-915d-e6e65d555a32: 1-2 (GUI)
+2025-12-07T02:49:34.716342700 - Reported result for 7bccf2f4-0dec-4976-851a-21a2d6d1105f: 5-0 (GUI)
+2025-12-07T02:50:02.605409700 - Reported result for fbb43e58-2151-416c-bae3-b4e203b5b93e: 1-3 (GUI)
+2025-12-07T02:50:49.298950200 - Auto-saved on exit (GUI)

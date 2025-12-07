@@ -14,21 +14,19 @@
                preserveRatio="false"/>
 
     <!-- Button: Create -->
-    <ImageView fx:id="btnCreate"
+    <ImageView fx:id="btnCreate" mouseTransparent="true"
                layoutX="470" layoutY="350"
-               fitWidth="340" fitHeight="70"
-               pickOnBounds="true"
-               onMouseClicked="#onCreate"/>
+               fitWidth="340" fitHeight="70"/>
 
     <!-- Button: Load -->
-    <ImageView fx:id="btnLoad"
+    <ImageView fx:id="btnLoad" mouseTransparent="true"
                layoutX="470" layoutY="450"
                fitWidth="340" fitHeight="70"
                pickOnBounds="true"
                onMouseClicked="#onLoad"/>
 
     <!-- Button: Exit -->
-    <ImageView fx:id="btnExit"
+    <ImageView fx:id="btnExit" mouseTransparent="true"
                layoutX="20" layoutY="20"
                fitWidth="60" fitHeight="60"
                pickOnBounds="true"

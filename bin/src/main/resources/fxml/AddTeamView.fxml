@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.myteam.tournament.app.controller.AddTeamController"
+      alignment="CENTER" spacing="20">
+
+    <TextField fx:id="txtNamaTeam" promptText="Nama Tim" prefWidth="300"/>
+
+    <ImageView fx:id="btnAdd"
+               fitWidth="240" fitHeight="70"
+               pickOnBounds="true"
+               onMouseClicked="#onAdd"/>
+
+</VBox>
